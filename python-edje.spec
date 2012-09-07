@@ -1,28 +1,27 @@
 Summary:	Python bindings for Edje library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki Edje
 Name:		python-edje
-Version:	0.7.3
+Version:	1.7.0
 Release:	1
 License:	LGPL v2.1+
 Group:		Development/Languages/Python
 Source0:	http://download.enlightenment.org/releases/BINDINGS/python/%{name}-%{version}.tar.bz2
-# Source0-md5:	e3ea7916db29e8656452369d36fc7d4e
-Patch0:		%{name}-cython.patch
+# Source0-md5:	1e0d7a4a4504298caaad0cee476e4edb
 URL:		http://trac.enlightenment.org/e/wiki/Python
-BuildRequires:	edje-devel >= 1.0.0
-BuildRequires:	eina-devel >= 1.0.0
+BuildRequires:	edje-devel >= 1.7.0
+BuildRequires:	eina-devel >= 1.7.0
 BuildRequires:	epydoc
-BuildRequires:	evas-devel >= 1.0.0
-BuildRequires:	python-Cython >= 0.13
-BuildRequires:	python-devel >= 1:2.5
-BuildRequires:	python-evas >= 0.7.3
+BuildRequires:	evas-devel >= 1.7.0
+BuildRequires:	python-Cython >= 0.15.1
+BuildRequires:	python-devel >= 1:2.7
+BuildRequires:	python-evas >= 1.7.0
 BuildRequires:	rpm-pythonprov
 BuildRequires:	pkgconfig >= 1:0.22
 BuildRequires:	rpmbuild(macros) >= 1.219
-Requires:	edje-libs >= 1.0.0
-Requires:	eina >= 1.0.0
-Requires:	evas >= 1.0.0
-Requires:	python-evas >= 0.7.3
+Requires:	edje-libs >= 1.7.0
+Requires:	eina >= 1.7.0
+Requires:	evas >= 1.7.0
+Requires:	python-evas >= 1.7.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -36,10 +35,10 @@ Summary:	Python bindings for Edje library - development files
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki Edje - pliki programistyczne
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	edje-devel >= 1.0.0
-Requires:	eina-devel >= 1.0.0
-Requires:	evas-devel >= 1.0.0
-Requires:	python-evas-devel >= 0.7.3
+Requires:	edje-devel >= 1.7.0
+Requires:	eina-devel >= 1.7.0
+Requires:	evas-devel >= 1.7.0
+Requires:	python-evas-devel >= 1.7.0
 
 %description devel
 Python bindings for Edje library - development files.
@@ -49,7 +48,6 @@ Wiązania Pythona do biblioteki Edje - pliki programistyczne.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %configure \
@@ -80,7 +78,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{py_sitedir}/edje/c_edje.so
 %dir %{py_sitedir}/edje/edit
 %attr(755,root,root) %{py_sitedir}/edje/edit/c_edit.so
-%{py_sitescriptdir}/edje
+%{py_sitedir}/edje/*.py[co]
+%{py_sitedir}/edje/edit/__init__.py[co]
 %{_examplesdir}/%{name}-%{version}
 
 %files devel
